@@ -1,5 +1,5 @@
 <template>
-<div class="overflow-x-hidden overflow-y-auto relative h-screen inner-container home destination">
+<div class="overflow-x-hidden overflow-y-auto relative h-screen inner-container" :class="selected">
   <div class="py-5 px-3">
     <div class="flex justify-between items-center">
       <span class="logo h-6 w-6">
@@ -29,6 +29,13 @@
 
 <script setup>
 import { MenuIcon, XIcon } from '@heroicons/vue/solid'
+import { onMounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+const route = useRoute()
+const router = useRouter()
+
+const selected = ref('')
 
 const navigation = [
   {
@@ -44,12 +51,12 @@ const navigation = [
   {
     name: 'Crew',
     tag: '02',
-    path: '/'
+    path: '/crew'
   },
   {
     name: 'Technology',
     tag: '03',
-    path: '/'
+    path: '/technology'
   },
 
 ]
@@ -58,10 +65,19 @@ function toggleSide() {
   const sideEl = document.querySelector("#sidebar");
   sideEl.classList.toggle("translate-x-full")
 }
+
+onMounted(() => {
+  selected.value = router.currentRoute.value.name
+})
+
+watch(router.currentRoute, () => {
+  selected.value = router.currentRoute.value.name
+})
 </script>
 
 <style>
 .inner-container {
-  background: url('../assets/home/background-home-mobile.jpg');
+  background: url('');
+  @apply bg-cover;
 }
 </style>

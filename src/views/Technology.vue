@@ -56,7 +56,6 @@
 <style>
 .destination {
   background: url('../assets/destination/background-destination-mobile.jpg');
-  @apply bg-cover;
 }
 </style>
 

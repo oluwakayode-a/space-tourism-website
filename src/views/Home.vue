@@ -46,5 +46,6 @@ button:hover {
 <style>
 .home {
   background: url('../assets/home/background-home-mobile.jpg');
+  @apply bg-cover;
 }
 </style>
