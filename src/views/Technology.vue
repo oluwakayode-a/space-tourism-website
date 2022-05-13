@@ -1,52 +1,45 @@
 <template>
-    <div class="text-center h-screen p-5 pb-10">
-        <div class="uppercase s-text-con text-lg tracking-widest">
-            <span class="mr-3 font-bold text-gray-500">01</span> <span class="font-medium">Pick your destination</span>
+    <div class="text-center h-screen pb-10">
+        <div class="uppercase s-text-con text-lg tracking-witech">
+            <span class="mr-3 font-bold text-gray-500">03</span> <span class="font-medium">Space Launch 101</span>
         </div>
 
         <div class="flex items-center justify-center my-10">
-            <img :src="selected.img" alt="" class="h-48 w-48">
+            <img :src="selected.img" alt="" class="h-auto w-full">
         </div>
 
         <TabGroup>
-            <TabList class="s-text-con flex space-x-1 py-1 px-5">
+            <TabList class="s-text-con flex justify-center space-x-5 py-1 px-5">
                 <Tab
-                v-for="(destination, index) in destinations"
+                v-for="(tech, index) in technologies"
                 as="template"
                 :key="index"
                 v-slot="{ selected }"
                 >
                 <button
                     :class="[
-                    'w-full uppercase py-2.5 px-2 text-lg font-medium leading-5',
-                    'focus:border-none focus:outline-none',
+                    'w-2 h-2 uppercase text-lg font-medium leading-5',
+                    'focus:border-none focus:outline-none rounded-full',
+                    selected ? 
+                    'bg-white' : 'bg-gray-400'
                     ]"
                     @click="select(index)"
                 >
-                    <span class="py-2" :class="selected ? 'border-b-4 border-white text-white' : 'hover:border-gray-400 hover:border-b-4 hover:text-white text-gray-400'">{{ destination.title }}</span>
                 </button>
                 </Tab>
             </TabList>
 
             <TabPanels class="mt-2 pb-10">
                 <TabPanel
-                v-for="(dest, index) in destinations"
+                v-for="(tech, index) in technologies"
                 :key="index"
                 >
-                <h1 class="text-6xl text-white uppercase my-6">{{ dest.title }}</h1>
+                <span class="text-lg uppercase mt-6 block text-gray-400">The Terminology...</span>
+                <h1 class="text-2xl text-white uppercase mb-5">{{ tech.name }}</h1>
 
-                <p class="s-text text-gray-300 leading-relaxed">
-                    {{ dest.desc }}
+                <p class="s-text text-gray-300 leading-relaxed px-5">
+                    {{ tech.desc }}
                 </p>
-
-                <hr class="my-10 border-gray-600">
-
-                <h3 class="s-text-con text-sm uppercase tracking-widest text-gray-300">Avg. Distance</h3>
-                <p class="text-3xl my-2 uppercase">{{ dest.avgDistance }}</p>
-
-                <h3 class="mt-10 s-text-con text-sm uppercase tracking-widest text-gray-300">Est. Travel Time</h3>
-                <p class="text-3xl my-2 uppercase">{{ dest.travelTime }}</p>
-
                 </TabPanel>
             </TabPanels>
         </TabGroup>
@@ -54,8 +47,9 @@
 </template>
 
 <style>
-.destination {
-  background: url('../assets/destination/background-destination-mobile.jpg');
+.technology {
+  background: url('../assets/technology/background-technology-mobile.jpg');
+  @apply bg-cover;
 }
 </style>
 
@@ -65,47 +59,33 @@ import { onMounted, ref } from "vue"
 
 const selected = ref({})
 
-const destinations = ref([
+const technologies = ref([
     {
       id: 1,
-      title: 'Moon',
-      desc: 'See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.',
-      avgDistance: '384,400 KM',
-      travelTime: '3 DAYS',
-      img: new URL("../assets/destination/image-moon.webp", import.meta.url).href,
+      name: 'Launch Vehicle',
+      desc: "A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!",
+      img: new URL("../assets/technology/image-launch-vehicle-landscape.jpg", import.meta.url).href,
     },
     {
       id: 2,
-      title: 'Mars',
-      desc: 'Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!',
-      avgDistance: '225 MIL. KM',
-      travelTime: '9 MONTHS',
-      img: new URL("../assets/destination/image-mars.webp", import.meta.url).href,
+      name: 'Spaceport',
+      desc: 'A spaceport or cosmodrome is a site for launching (or receiving) spacecraft, by analogy to the seaport for ships or airport for aircraft. Based in the famous Cape Canaveral, our spaceport is ideally situated to take advantage of the Earth’s rotation for launch.',
+      img: new URL("../assets/technology/image-spaceport-landscape.jpg", import.meta.url).href,
     },
     {
       id: 3,
-      title: 'Europa',
-      desc: 'The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.',      
-      avgDistance: '628 MIL. KM',
-      travelTime: '3 YEARS',
-      img: new URL("../assets/destination/image-europa.webp", import.meta.url).href,
+      name: 'Space Capsule',
+      desc: "A space capsule is an often-crewed spacecraft that uses a blunt-body reentry capsule to reenter the Earth's atmosphere without wings. Our capsule is where you'll spend your time during the flight. It includes a space gym, cinema, and plenty of other activities to keep you entertained.",      
+      img: new URL("../assets/technology/image-space-capsule-landscape.jpg", import.meta.url).href,
     },
-    {
-      id: 4,
-      title: 'Titan',
-      desc: 'See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.',
-      avgDistance: '384,400 km',
-      travelTime: '3 Days',
-      img: new URL("../assets/destination/image-titan.webp", import.meta.url).href,
-    },  
 ])
 
 
 function select(index) {
-    selected.value = destinations.value[index]
+    selected.value = technologies.value[index]
 }
 
 onMounted(() => {
-    selected.value = destinations.value[0]
+    selected.value = technologies.value[0]
 })
 </script>
