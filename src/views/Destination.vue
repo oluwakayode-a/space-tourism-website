@@ -1,73 +1,52 @@
 <template>
-    <div class="text-center h-screen p-5">
+    <div class="text-center h-screen p-5 pb-10">
         <div class="uppercase s-text-con text-lg tracking-widest">
             <span class="mr-3 font-bold text-gray-500">01</span> <span class="font-medium">Pick your destination</span>
         </div>
 
         <div class="flex items-center justify-center my-10">
-            <img src="../assets/destination/image-moon.webp" alt="" class="h-48 w-48">
+            <img :src="selected.img" alt="" class="h-48 w-48">
         </div>
 
         <TabGroup>
-            <TabList class="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+            <TabList class="s-text-con flex space-x-1 py-1 px-5">
                 <Tab
-                v-for="category in Object.keys(categories)"
+                v-for="(destination, index) in destinations"
                 as="template"
-                :key="category"
+                :key="index"
                 v-slot="{ selected }"
                 >
                 <button
                     :class="[
-                    'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
-                    'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                    selected
-                        ? 'bg-white shadow'
-                        : 'text-blue-100 hover:bg-white/[0.12] hover:text-white',
+                    'w-full uppercase py-2.5 px-2 text-lg font-medium leading-5',
+                    'focus:border-none focus:outline-none',
                     ]"
+                    @click="select(index)"
                 >
-                    {{ category }}
+                    <span class="py-2" :class="selected ? 'border-b-4 border-white text-white' : 'hover:border-gray-400 hover:border-b-4 hover:text-white text-gray-400'">{{ destination.title }}</span>
                 </button>
                 </Tab>
             </TabList>
 
-            <TabPanels class="mt-2">
+            <TabPanels class="mt-2 pb-10">
                 <TabPanel
-                v-for="(posts, idx) in Object.values(categories)"
-                :key="idx"
-                :class="[
-                    'rounded-xl bg-white p-3',
-                    'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                ]"
+                v-for="(dest, index) in destinations"
+                :key="index"
                 >
-                <ul>
-                    <li
-                    v-for="post in posts"
-                    :key="post.id"
-                    class="relative rounded-md p-3 hover:bg-gray-100"
-                    >
-                    <h3 class="text-sm font-medium leading-5">
-                        {{ post.title }}
-                    </h3>
+                <h1 class="text-6xl text-white uppercase my-6">{{ dest.title }}</h1>
 
-                    <ul
-                        class="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500"
-                    >
-                        <li>{{ post.date }}</li>
-                        <li>&middot;</li>
-                        <li>{{ post.commentCount }} comments</li>
-                        <li>&middot;</li>
-                        <li>{{ post.shareCount }} shares</li>
-                    </ul>
+                <p class="s-text text-gray-300 leading-relaxed">
+                    {{ dest.desc }}
+                </p>
 
-                    <a
-                        href="#"
-                        :class="[
-                        'absolute inset-0 rounded-md',
-                        'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2',
-                        ]"
-                    />
-                    </li>
-                </ul>
+                <hr class="my-10 border-gray-600">
+
+                <h3 class="s-text-con text-sm uppercase tracking-widest text-gray-300">Avg. Distance</h3>
+                <p class="text-3xl my-2 uppercase">{{ dest.avgDistance }}</p>
+
+                <h3 class="mt-10 s-text-con text-sm uppercase tracking-widest text-gray-300">Est. Travel Time</h3>
+                <p class="text-3xl my-2 uppercase">{{ dest.travelTime }}</p>
+
                 </TabPanel>
             </TabPanels>
         </TabGroup>
@@ -82,56 +61,51 @@
 
 <script setup>
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
-import { ref } from "vue"
+import { onMounted, ref } from "vue"
 
-const categories = ref({
-  Recent: [
+const selected = ref({})
+
+const destinations = ref([
     {
       id: 1,
-      title: 'Does drinking coffee make you smarter?',
-      date: '5h ago',
-      commentCount: 5,
-      shareCount: 2,
+      title: 'Moon',
+      desc: 'See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.',
+      avgDistance: '384,400 KM',
+      travelTime: '3 DAYS',
+      img: new URL("../assets/destination/image-moon.webp", import.meta.url).href,
     },
     {
       id: 2,
-      title: "So you've bought coffee... now what?",
-      date: '2h ago',
-      commentCount: 3,
-      shareCount: 2,
-    },
-  ],
-  Popular: [
-    {
-      id: 1,
-      title: 'Is tech making coffee better or worse?',
-      date: 'Jan 7',
-      commentCount: 29,
-      shareCount: 16,
+      title: 'Mars',
+      desc: 'Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!',
+      avgDistance: '225 MIL. KM',
+      travelTime: '9 MONTHS',
+      img: new URL("../assets/destination/image-mars.webp", import.meta.url).href,
     },
     {
-      id: 2,
-      title: 'The most innovative things happening in coffee',
-      date: 'Mar 19',
-      commentCount: 24,
-      shareCount: 12,
-    },
-  ],
-  Trending: [
-    {
-      id: 1,
-      title: 'Ask Me Anything: 10 answers to your questions about coffee',
-      date: '2d ago',
-      commentCount: 9,
-      shareCount: 5,
+      id: 3,
+      title: 'Europa',
+      desc: 'The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.',      
+      avgDistance: '628 MIL. KM',
+      travelTime: '3 YEARS',
+      img: new URL("../assets/destination/image-europa.webp", import.meta.url).href,
     },
     {
-      id: 2,
-      title: "The worst advice we've ever heard about coffee",
-      date: '4d ago',
-      commentCount: 1,
-      shareCount: 2,
-    },
-  ],
+      id: 4,
+      title: 'Titan',
+      desc: 'See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.',
+      avgDistance: '384,400 km',
+      travelTime: '3 Days',
+      img: new URL("../assets/destination/image-titan.webp", import.meta.url).href,
+    },  
+])
+
+
+function select(index) {
+    selected.value = destinations.value[index]
+}
+
+onMounted(() => {
+    selected.value = destinations.value[0]
 })
 </script>

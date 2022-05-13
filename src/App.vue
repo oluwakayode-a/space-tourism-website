@@ -1,5 +1,5 @@
 <template>
-<div class="overflow-hidden relative h-screen inner-container home destination">
+<div class="overflow-x-hidden overflow-y-auto relative h-screen inner-container home destination">
   <div class="py-5 px-3">
     <div class="flex justify-between items-center">
       <span class="logo h-6 w-6">
