@@ -1,17 +1,25 @@
 <template>
 <div class="overflow-x-hidden overflow-y-auto relative h-screen inner-container" :class="selected">
-  <div class="py-5 px-3">
+  <div class="py-5 px-3 sm:py-0 sm:px-0">
     <div class="flex justify-between items-center">
-      <span class="logo h-6 w-6">
-        <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <span class="logo h-6 w-6 sm:h-10 sm:w-10 sm:my-5 mx-3">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="20" cy="20" r="20" fill="white"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M20 0C20 0 20 20 0 20C19.648 20.1428 20 40 20 40C20 40 20 20 39.9999 20C20 20 20 0 20 0Z" fill="#0B0D17"/>
         </svg>
       </span>
-
-      <MenuIcon class="h-6 w-6 cursor-pointer" aria-hidden="true" @click="toggleSide" />
+      <!-- Desktop Navigation -->
+      <div class="bg-gray-800 h-full px-10 hidden sm:block">
+        <nav class="flex">
+          <router-link :to="nav.path" v-for="(nav, index) in navigation" :key="index" class="px-4 py-6" :class="isActive(nav.name) && 'border-b-2 border-gray-200'">
+            <span class="s-text-con uppercase text-">{{ nav.name }}</span>
+          </router-link>
+        </nav>
+      </div>
+      <MenuIcon class="h-6 w-6 cursor-pointer sm:hidden" aria-hidden="true" @click="toggleSide" />
     </div>
-    <div class="h-screen z-10 w-9/12 absolute right-0 inset-y-0 transition duration-200 ease-in-out backdrop-filter backdrop-blur-xl bg-opacity-60 translate-x-full" id="sidebar">
+    <!-- Mobile Navigation -->
+    <div class="sm:hidden h-screen z-10 w-9/12 absolute right-0 inset-y-0 transition duration-200 ease-in-out backdrop-filter backdrop-blur-xl bg-opacity-60 translate-x-full" id="sidebar">
       <nav class="px-8 py-24 relative" role="navigation">
         <XIcon class="absolute h-6 w-6 right-5 top-6 cursor-pointer" @click="toggleSide" />
         <router-link :to="nav.path" v-for="(nav, index) in navigation" :key="index" class="s-text-con block px-3 py-2 my-3 uppercase text-xl">
@@ -60,6 +68,10 @@ const navigation = [
   },
 
 ]
+
+function isActive(name) {
+  return router.currentRoute.value.name === name.toLowerCase()
+}
 
 function toggleSide() {
   const sideEl = document.querySelector("#sidebar");
