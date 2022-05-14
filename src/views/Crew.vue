@@ -1,49 +1,51 @@
 <template>
-    <div class="text-center mt-6 px-5 pb-10 sm:pb-0 h-full sm:overflow-y-hidden">
-        <div class="uppercase s-text-con text-lg tracking-widest sm:text-left">
+    <div class="text-center lg:text-left mt-6 px-5 pb-10 sm:pb-0 h-full sm:overflow-y-hidden">
+        <div class="uppercase s-text-con text-lg lg:text-xl lg:px-32 lg:mt-5 tracking-widest sm:text-left">
             <span class="mr-3 font-bold text-gray-500">02</span> <span class="font-medium">Meet your Crew</span>
         </div>
 
-        <div class="sm:flex sm:flex-col-reverse">
-            <div class="flex items-center justify-center my-10 sm:my-7 border-b border-gray-600 sm:border-none sm:mb-auto">
-                <img :src="selected.img" alt="" class="h-full w-2/4 sm:w-2/5">
+        <div class="sm:flex sm:flex-col-reverse lg:flex-row-reverse lg:justify-between lg:items-center lg:pl-24">
+            <div class="flex items-center justify-center my-10 sm:my-7 lg:my-0 lg:w-auto border-b border-gray-600 sm:border-none sm:mb-auto">
+                <img :src="selected.img" alt="" class="h-full w-2/4 sm:w-2/5 lg:w-full">
             </div>
 
-            <TabGroup>
-                <TabList class="s-text-con flex justify-center space-x-5 py-1 px-5">
-                    <Tab
-                    v-for="(member, index) in crew"
-                    as="template"
-                    :key="index"
-                    v-slot="{ selected }"
-                    >
-                    <button
-                        :class="[
-                        'w-2 h-2 uppercase text-lg font-medium leading-5',
-                        'focus:border-none focus:outline-none rounded-full',
-                        selected ? 
-                        'bg-white' : 'bg-gray-400'
-                        ]"
-                        @click="select(index)"
-                    >
-                    </button>
-                    </Tab>
-                </TabList>
+            <div class="sm:flex sm:flex-col-reverse lg:items-start lg:justify-start lg:w-1/2 tracking-wider lg:pr-10">
+                <TabGroup>
+                    <TabList class="s-text-con flex justify-center lg:justify-start space-x-5 py-1 px-5 lg:px-0 lg:mt-20">
+                        <Tab
+                        v-for="(member, index) in crew"
+                        as="template"
+                        :key="index"
+                        v-slot="{ selected }"
+                        >
+                        <button
+                            :class="[
+                            'w-2 h-2 lg:w-3 lg:h-3 uppercase text-lg font-medium leading-5',
+                            'focus:border-none focus:outline-none rounded-full',
+                            selected ? 
+                            'bg-white' : 'bg-gray-400'
+                            ]"
+                            @click="select(index)"
+                        >
+                        </button>
+                        </Tab>
+                    </TabList>
 
-                <TabPanels class="mt-2 pb-10 sm:pb-5">
-                    <TabPanel
-                    v-for="(member, index) in crew"
-                    :key="index"
-                    >
-                    <span class="text-lg uppercase mt-6 block text-gray-400">{{ member.position }}</span>
-                    <h1 class="text-2xl text-white uppercase mb-5">{{ member.name }}</h1>
+                    <TabPanels class="mt-2 pb-10 sm:pb-5 lg:mt-10">
+                        <TabPanel
+                        v-for="(member, index) in crew"
+                        :key="index"
+                        >
+                        <span class="text-lg uppercase mt-6 block text-gray-400">{{ member.position }}</span>
+                        <h1 class="text-2xl lg:text-4xl text-white uppercase mb-5">{{ member.name }}</h1>
 
-                    <p class="s-text text-gray-300 leading-relaxed sm:mx-20">
-                        {{ member.bio }}
-                    </p>
-                    </TabPanel>
-                </TabPanels>
-            </TabGroup>
+                        <p class="s-text text-gray-300 leading-relaxed sm:mx-20 lg:mx-0">
+                            {{ member.bio }}
+                        </p>
+                        </TabPanel>
+                    </TabPanels>
+                </TabGroup>
+            </div>
         </div>
     </div>
 </template>
