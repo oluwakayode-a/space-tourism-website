@@ -1,10 +1,10 @@
 <template>
-    <div class="text-center h-screen pb-10">
-        <div class="uppercase s-text-con text-lg tracking-witech">
+    <div class="text-center mt-6 pb-10 sm:pb-0 h-full sm:overflow-y-hidden">
+        <div class="uppercase s-text-con text-lg tracking-widest sm:text-left sm:px-5">
             <span class="mr-3 font-bold text-gray-500">03</span> <span class="font-medium">Space Launch 101</span>
         </div>
 
-        <div class="flex items-center justify-center my-10">
+        <div class="my-10">
             <img :src="selected.img" alt="" class="h-auto w-full">
         </div>
 
@@ -18,13 +18,14 @@
                 >
                 <button
                     :class="[
-                    'w-2 h-2 uppercase text-lg font-medium leading-5',
+                    'w-10 h-10 uppercase text-lg font-medium leading-5',
                     'focus:border-none focus:outline-none rounded-full',
                     selected ? 
-                    'bg-white' : 'bg-gray-400'
+                    'bg-white text-gray-800' : 'bg-none border border-gray-700'
                     ]"
                     @click="select(index)"
                 >
+                {{ index + 1 }}
                 </button>
                 </Tab>
             </TabList>
@@ -34,10 +35,10 @@
                 v-for="(tech, index) in technologies"
                 :key="index"
                 >
-                <span class="text-lg uppercase mt-6 block text-gray-400">The Terminology...</span>
+                <span class="text-lg sm:text-base uppercase mt-6 block text-gray-400">The Terminology...</span>
                 <h1 class="text-2xl text-white uppercase mb-5">{{ tech.name }}</h1>
 
-                <p class="s-text text-gray-300 leading-relaxed px-5">
+                <p class="s-text text-gray-300 leading-relaxed px-5 sm:px-20 sm:text-sm">
                     {{ tech.desc }}
                 </p>
                 </TabPanel>

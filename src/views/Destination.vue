@@ -64,6 +64,13 @@
   background: url('../assets/destination/background-destination-mobile.jpg');
   @apply bg-cover;
 }
+
+@media (min-width: 640px) {
+  .destination {
+    background: url('../assets/destination/background-destination-tablet.jpg');
+    @apply bg-cover;
+  }
+}
 </style>
 
 <script setup>
@@ -100,7 +107,7 @@ const destinations = ref([
     {
       id: 4,
       title: 'Titan',
-      desc: 'See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.',
+      desc: 'The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.',
       avgDistance: '384,400 km',
       travelTime: '3 Days',
       img: new URL("../assets/destination/image-titan.webp", import.meta.url).href,
