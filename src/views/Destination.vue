@@ -1,15 +1,15 @@
 <template>
     <div class="text-center h-screen p-5 pb-10">
-        <div class="uppercase s-text-con text-lg tracking-widest">
+        <div class="uppercase s-text-con text-lg tracking-widest sm:text-left">
             <span class="mr-3 font-bold text-gray-500">01</span> <span class="font-medium">Pick your destination</span>
         </div>
 
         <div class="flex items-center justify-center my-10">
-            <img :src="selected.img" alt="" class="h-48 w-48">
+            <img :src="selected.img" alt="" class="h-48 w-48 sm:h-52 sm:w-52">
         </div>
 
         <TabGroup>
-            <TabList class="s-text-con flex space-x-1 py-1 px-5">
+            <TabList class="s-text-con flex space-x-1 py-1 px-5 sm:px-40">
                 <Tab
                 v-for="(destination, index) in destinations"
                 as="template"
@@ -18,7 +18,7 @@
                 >
                 <button
                     :class="[
-                    'w-full uppercase py-2.5 px-2 text-lg font-medium leading-5',
+                    'w-full uppercase py-2.5 px-2 text-lg sm:text-xl font-medium leading-5',
                     'focus:border-none focus:outline-none',
                     ]"
                     @click="select(index)"
@@ -35,17 +35,23 @@
                 >
                 <h1 class="text-6xl text-white uppercase my-6">{{ dest.title }}</h1>
 
-                <p class="s-text text-gray-300 leading-relaxed">
+                <p class="s-text text-gray-300 leading-relaxed sm:px-16">
                     {{ dest.desc }}
                 </p>
 
-                <hr class="my-10 border-gray-600">
+                <hr class="my-10 border-gray-700 sm:mx-auto sm:w-4/5">
 
-                <h3 class="s-text-con text-sm uppercase tracking-widest text-gray-300">Avg. Distance</h3>
-                <p class="text-3xl my-2 uppercase">{{ dest.avgDistance }}</p>
+                <div class="sm:flex sm:justify-between sm:w-1/2 sm:mx-auto">
+                    <div>
+                        <h3 class="s-text-con text-sm uppercase tracking-widest text-gray-300">Avg. Distance</h3>
+                        <p class="text-3xl sm:text-2xl my-2 uppercase">{{ dest.avgDistance }}</p>
+                    </div>
 
-                <h3 class="mt-10 s-text-con text-sm uppercase tracking-widest text-gray-300">Est. Travel Time</h3>
-                <p class="text-3xl my-2 uppercase">{{ dest.travelTime }}</p>
+                    <div class="mt-10 sm:mt-0">
+                        <h3 class="s-text-con text-sm uppercase tracking-widest text-gray-300">Est. Travel Time</h3>
+                        <p class="text-3xl sm:text-2xl my-2 uppercase">{{ dest.travelTime }}</p>
+                    </div>
+                </div>
 
                 </TabPanel>
             </TabPanels>

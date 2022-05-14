@@ -1,6 +1,6 @@
 <template>
-  <div class="text-center py-10 sm:py-20 h-screen px-5 home">
-    <h3 class="s-text-con uppercase tracking-wider text-lg text-gray-300">
+  <div class="text-center pt-10 sm:pt-15 px-5 h-full">
+    <h3 class="s-text-con uppercase tracking-wider text-lg text-gray-300 sm:mt-10">
       So, you want to travel to
     </h3>
     <h1 class="uppercase text-7xl my-5 sm:text-9xl">Space</h1>
@@ -48,7 +48,14 @@ button:hover {
 
 <style>
 .home {
-  background: url('../assets/home/background-home-mobile.jpg');
+  background: url('../assets/home/background-home-mobile.jpg') no-repeat;
   @apply bg-cover;
+}
+
+@media (min-width: 640px) {
+  .home {
+    background: url('../assets/home/background-home-tablet.jpg') no-repeat;
+    @apply bg-cover;
+  }
 }
 </style>
