@@ -1,12 +1,12 @@
 <template>
-  <div class="text-center pt-10 sm:pt-15 px-5 h-full lg:flex lg:text-left">
+  <div class="text-center pt-10 sm:pt-15 px-5 h-full lg:flex lg:text-left lg:mt-20 lg:px-20">
     <div>
-      <h3 class="s-text-con uppercase tracking-wider text-lg text-gray-300 sm:mt-10">
+      <h3 class="s-text-con uppercase tracking-wider text-lg lg:text-xl text-gray-300 sm:mt-10">
         So, you want to travel to
       </h3>
       <h1 class="uppercase text-7xl my-5 sm:text-9xl">Space</h1>
 
-      <p class="s-text text-gray-200 text-sm leading-relaxed mt-5 sm:px-28 lg:px-0">
+      <p class="s-text text-gray-200 text-sm leading-relaxed tracking-wide mt-5 sm:px-28 lg:px-0 lg:w-1/2">
         Let’s face it; if you want to go to space, you might as well genuinely go
         to outer space and not hover kind of on the edge of it. Well sit back, and
         relax because we’ll give you a truly out of this world experience!
@@ -23,6 +23,8 @@
             h-32
             sm:w-44
             sm:h-44
+            lg:w-52
+            lg:h-52
             sm:text-lg
             flex
             items-center
@@ -31,7 +33,7 @@
             rounded-full
             uppercase
             border-none
-            hover:outline-gray-400
+            hover:outline-gray-600
           "
         >
           Explore
