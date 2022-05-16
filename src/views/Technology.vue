@@ -65,6 +65,11 @@
 <script setup>
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import { onMounted, ref } from "vue"
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "Space Tourism | Technology"
+})
 
 const selected = ref({})
 

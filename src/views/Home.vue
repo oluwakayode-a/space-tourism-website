@@ -52,6 +52,14 @@
   </div>
 </template>
 
+<script setup>
+import { useHead } from "@vueuse/head";
+
+useHead({
+  title: "Space Tourism | Home"
+})
+</script>
+
 <style scoped>
 button:hover {
   outline-width: 50px;

@@ -23,7 +23,7 @@
 
     <!-- Mobile Navigation -->
     <div class="sm:hidden h-screen z-10 w-9/12 absolute right-0 inset-y-0 transition duration-200 ease-in-out backdrop-filter backdrop-blur-xl bg-opacity-60 translate-x-full" id="sidebar">
-      <nav class="px-8 py-24 relative" role="navigation">
+      <nav class="px-8 py-24 relative" role="navigation" @click="toggleSide">
         <XIcon class="absolute h-6 w-6 right-5 top-6 cursor-pointer" @click="toggleSide" />
         <router-link :to="nav.path" v-for="(nav, index) in navigation" :key="index" class="s-text-con block px-3 py-2 my-3 uppercase text-xl">
           <span class="mr-4 font-bold">{{ nav.tag }}</span>
