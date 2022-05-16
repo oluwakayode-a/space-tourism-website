@@ -6,7 +6,7 @@
 
         <div class="sm:flex sm:flex-col-reverse lg:flex-row-reverse lg:justify-between lg:items-center lg:pl-24">
             <div class="flex items-center justify-center my-10 sm:my-7 lg:my-0 lg:w-auto border-b border-gray-600 sm:border-none sm:mb-auto">
-                <img :src="selected.img" alt="" class="h-full w-2/4 sm:w-2/5 lg:w-full">
+                <img :src="selected.img" alt="" class="h-full w-2/4 sm:w-2/5 lg:w-full" v-motion-slide-top>
             </div>
 
             <div class="sm:flex sm:flex-col-reverse lg:items-start lg:justify-start lg:w-1/2 tracking-wider lg:pr-10">

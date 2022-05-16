@@ -5,7 +5,16 @@
         </div>
 
         <div class="lg:flex lg:justify-between lg:px-32 lg:mt-10">
-            <div class="flex items-center justify-center my-10">
+            <div class="flex items-center justify-center my-10" v-motion
+          :initial="{
+            scale: 0,
+          }"
+          :enter="{
+            scale: 1,
+            transition: {
+              delay: 500,
+            },
+          }">
                 <img :src="selected.img" alt="" class="h-48 w-48 sm:h-52 sm:w-52 lg:h-72 lg:w-72">
             </div>
 
@@ -30,7 +39,7 @@
                         </Tab>
                     </TabList>
 
-                    <TabPanels class="mt-2 pb-10">
+                    <TabPanels class="mt-2 pb-10" v-motion-fade>
                         <TabPanel
                         v-for="(dest, index) in destinations"
                         :key="index"

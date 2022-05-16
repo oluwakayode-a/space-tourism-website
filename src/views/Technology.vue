@@ -9,11 +9,11 @@
             <div class="my-10 lg:my-0 lg:min-w-max">
                 <picture>
                     <source :srcset="selected.imgPortrait" media="(min-width: 1024px)">
-                    <img :src="selected.img" alt="" aria-hidden="true" class="h-auto w-full object-cover lg:h-96">
+                    <img :src="selected.img" alt="" aria-hidden="true" class="h-auto w-full object-cover lg:h-96 xl:h-full" v-motion-slide-visible-right>
                 </picture>            
             </div>
             
-            <div class="lg:flex lg:pl-20 lg:pt-32">
+            <div class="lg:flex lg:pl-20 lg:pt-32 xl:pl-40">
                 <TabGroup>
                     <TabList class="flex justify-center lg:justify-start lg:flex-col lg:items-center space-x-5 lg:space-x-0 py-1 px-5">
                         <Tab
@@ -42,9 +42,9 @@
                         :key="index"
                         >
                         <span class="text-lg sm:text-base uppercase mt-6 lg:mt-0 block text-gray-400">The Terminology...</span>
-                        <h1 class="text-2xl text-white uppercase mb-5 lg:text-4xl">{{ tech.name }}</h1>
+                        <h1 class="text-2xl text-white uppercase mb-5 lg:text-4xl xl:text-5xl">{{ tech.name }}</h1>
 
-                        <p class="s-text text-gray-300 leading-relaxed lg:leading-6 px-5 sm:px-20 lg:px-0 sm:text-sm lg:pr-10">
+                        <p class="s-text text-gray-300 leading-relaxed lg:leading-6 px-5 sm:px-20 lg:px-0 sm:text-sm lg:pr-10 xl:pr-44">
                             {{ tech.desc }}
                         </p>
                         </TabPanel>

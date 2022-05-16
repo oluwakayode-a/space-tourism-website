@@ -1,6 +1,6 @@
 <template>
   <div class="text-center pt-10 sm:pt-15 px-5 h-full lg:flex lg:text-left lg:mt-20 lg:px-20">
-    <div>
+    <div v-motion-fade>
       <h3 class="s-text-con uppercase tracking-wider text-lg lg:text-xl text-gray-300 sm:mt-10">
         So, you want to travel to
       </h3>
@@ -15,6 +15,16 @@
 
     <router-link to="/destination">
       <button
+          v-motion
+          :initial="{
+            scale: 0,
+          }"
+          :enter="{
+            scale: 1,
+            transition: {
+              delay: 500,
+            },
+          }"
           class="
             text-gray-800
             bg-white
